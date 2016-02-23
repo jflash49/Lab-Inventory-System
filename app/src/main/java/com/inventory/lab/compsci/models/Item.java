@@ -7,14 +7,16 @@ import com.orm.SugarRecord;
  */
 public class Item  extends SugarRecord{
     private String Serial, Name, UWI_TAG;
+    private ItemType type;
 
     public Item() {
     }
 
-    public Item(String serial, String name, String UWI_TAG) {
+    public Item(String serial, String name, String UWI_TAG, ItemType type) {
         Serial = serial;
         Name = name;
         this.UWI_TAG = UWI_TAG;
+        this.type = type;
     }
 
     public String getSerial() {
@@ -39,5 +41,13 @@ public class Item  extends SugarRecord{
 
     public void setUWI_TAG(String UWI_TAG) {
         this.UWI_TAG = UWI_TAG;
+    }
+
+    public ItemType getType() {
+        return type;
+    }
+
+    public void setType(ItemType type) {
+        this.type = type;
     }
 }

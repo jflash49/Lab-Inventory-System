@@ -1,11 +1,13 @@
 package com.inventory.lab.compsci.models;
 
+import com.orm.SugarRecord;
+
 import java.util.Date;
 
 /**
  * Created by peoplesoft on 2/23/2016.
  */
-public class TestPeriods {
+public class TestPeriods extends SugarRecord{
     private Date startdt, enddt;
 
     public TestPeriods() {
