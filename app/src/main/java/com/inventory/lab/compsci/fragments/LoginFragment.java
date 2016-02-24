@@ -13,6 +13,10 @@ import android.widget.EditText;
 import com.inventory.lab.compsci.R;
 import com.inventory.lab.compsci.activities.MainActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by peoplesoft on 2/23/2016.
  */
@@ -36,10 +40,13 @@ public class LoginFragment extends Fragment {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent (getActivity(), MainActivity.class );
+                //new DownloadWebpageTask(new AsyncResult()).execute("https://spreadsheets.google.com/tq?18gKByXS6AOpC9Kt6Ua0wpTXOHlAdAQsYD0hdVgq4rGk");
+
+                Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
             }
         });
+
         return v;
     }
 
@@ -52,4 +59,6 @@ public class LoginFragment extends Fragment {
     public void onPause() {
         super.onPause();
     }
+
+
 }

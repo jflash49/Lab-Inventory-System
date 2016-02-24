@@ -37,6 +37,7 @@ public class MainFragment extends Fragment {
 
                 fm.beginTransaction()
                         .replace(R.id.inventory_container, fragment)
+                        .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                         .addToBackStack(null)
                         .commit();
             }
@@ -51,6 +52,7 @@ public class MainFragment extends Fragment {
 
                 fm.beginTransaction()
                         .replace(R.id.inventory_container, fragment)
+                        .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                         .addToBackStack(null)
                         .commit();
             }

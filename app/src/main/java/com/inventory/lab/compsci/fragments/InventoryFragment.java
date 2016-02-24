@@ -28,6 +28,11 @@ public class InventoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.inventory_fragment,container,false);
+        mMonitor = (Button)v.findViewById(R.id.to_monitors);
+        mCPU = (Button)v.findViewById(R.id.to_cpus);
+        mKeyboard = (Button)v.findViewById(R.id.to_keyboards);
+        mMice = (Button)v.findViewById(R.id.to_mice);
+
         return v;
     }
 }

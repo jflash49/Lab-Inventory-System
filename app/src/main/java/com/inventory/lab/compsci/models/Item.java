@@ -12,7 +12,7 @@ public class Item  extends SugarRecord{
     public Item() {
     }
 
-    public Item(String serial, String name, String UWI_TAG, ItemType type) {
+    public Item(String serial, ItemType type, String name, String UWI_TAG) {
         Serial = serial;
         Name = name;
         this.UWI_TAG = UWI_TAG;
