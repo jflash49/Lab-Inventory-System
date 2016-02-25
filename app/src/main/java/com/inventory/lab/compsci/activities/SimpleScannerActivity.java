@@ -51,6 +51,7 @@ public class SimpleScannerActivity extends AppCompatActivity implements ZXingSca
 //            List<Item> items = SugarRecord.listAll(Item.class);
 //            for (Item scanitem: items){
 //                if (scanitem.getSerial().equals(rawResult.getText())){
+
                     Toast.makeText(getApplicationContext(),"Item Found : "+rawResult.getText(),Toast.LENGTH_SHORT).show();
 //          final Context context = this;
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());

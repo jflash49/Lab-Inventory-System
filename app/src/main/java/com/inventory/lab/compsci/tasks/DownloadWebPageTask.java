@@ -1,6 +1,11 @@
 package com.inventory.lab.compsci.tasks;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.ProgressBar;
+
+import com.inventory.lab.compsci.activities.LoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,7 +20,12 @@ import java.net.URL;
 /**
  * Created by peoplesoft on 2/23/2016.
  */
-public class DownloadWebPageTask extends AsyncTask<String, Void ,String>{
+public class DownloadWebPageTask extends AsyncTask<String, Integer ,String>{
+    AsyncResult callback;
+
+    public DownloadWebPageTask(AsyncResult callback) {
+        this.callback = callback;
+    }
 
     @Override
     protected String doInBackground(String... urls) {
@@ -34,8 +44,8 @@ public class DownloadWebPageTask extends AsyncTask<String, Void ,String>{
         String jsonResponse = result.substring(start, end);
         try {
             JSONObject table = new JSONObject(jsonResponse);
-            new UpdateDataTask(table);
-            //callback.onResult(table);
+            //new UpdateDataTask(table);
+            callback.onResult(table);
         } catch (JSONException e) {
             e.printStackTrace();
         }

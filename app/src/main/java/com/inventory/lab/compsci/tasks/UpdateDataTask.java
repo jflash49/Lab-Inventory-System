@@ -1,38 +1,57 @@
 package com.inventory.lab.compsci.tasks;
 
+import android.util.Log;
+
+
+import com.inventory.lab.compsci.R;
+import com.inventory.lab.compsci.models.Item;
+import com.inventory.lab.compsci.models.ItemType;
+import com.orm.SugarRecord;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * Created by peoplesoft on 2/23/2016.
  */
 public class UpdateDataTask {
+    Item item;
+    List<Item> items;
+    ItemType itemType;
+
 
     public UpdateDataTask(JSONObject obj) {
-       // processJson(obj);
+        try {
+            JSONArray rows = obj.getJSONArray("rows");
+            cleardatabase();
+            for (int r = 0; r < rows.length(); ++r) {
+                JSONObject row = rows.getJSONObject(r);
+                JSONArray columns = row.getJSONArray("c");
+
+               // int position = columns.getJSONObject(0).getInt("v");
+                String SN = columns.getJSONObject(0).getString("v");
+                int type = columns.getJSONObject(1).getInt("v");
+                String name  = columns.getJSONObject(2).getString("v");
+                String tag = columns.getJSONObject(3).getString("v");
+
+                item = new Item();
+                item.setSerial(SN);
+                itemType = SugarRecord.findById(ItemType.class,(long)type);
+                item.setType(itemType);
+                item.setName(name);
+                item.setUWI_TAG(tag);
+                item.save();
+                Log.d("ITEM",item.toString());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
-    /*try {
-        JSONArray rows = object.getJSONArray("rows");
-
-        for (int r = 0; r < rows.length(); ++r) {
-            JSONObject row = rows.getJSONObject(r);
-            JSONArray columns = row.getJSONArray("c");
-
-            int position = columns.getJSONObject(0).getInt("v");
-            String name = columns.getJSONObject(1).getString("v");
-            int wins = columns.getJSONObject(3).getInt("v");
-            int draws = columns.getJSONObject(4).getInt("v");
-            int losses = columns.getJSONObject(5).getInt("v");
-            int points = columns.getJSONObject(19).getInt("v");
-            Team team = new Team(position, name, wins, draws, losses, points);
-            teams.add(team);
-        }
-
-        final TeamsAdapter adapter = new TeamsAdapter(this, R.layout.team, teams);
-        listview.setAdapter(adapter);
-
-    } catch (JSONException e) {
-        e.printStackTrace();
-    }*/
+    public void cleardatabase(){
+        SugarRecord.deleteAll(Item.class);
+    }
 }

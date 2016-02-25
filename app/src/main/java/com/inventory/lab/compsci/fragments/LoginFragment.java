@@ -9,9 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.inventory.lab.compsci.R;
 import com.inventory.lab.compsci.activities.MainActivity;
+import com.inventory.lab.compsci.tasks.AsyncResult;
+import com.inventory.lab.compsci.tasks.DownloadWebPageTask;
+import com.inventory.lab.compsci.tasks.UpdateDataTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,10 +44,15 @@ public class LoginFragment extends Fragment {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //new DownloadWebpageTask(new AsyncResult()).execute("https://spreadsheets.google.com/tq?18gKByXS6AOpC9Kt6Ua0wpTXOHlAdAQsYD0hdVgq4rGk");
+                new DownloadWebPageTask(new AsyncResult() {
+                    @Override
+                    public void onResult(JSONObject object) {
+                        Intent i = new Intent(getActivity(), MainActivity.class);
+                        startActivity(i);
+                        new UpdateDataTask(object);
+                    }
+                }).execute("https://spreadsheets.google.com/tq?key=18gKByXS6AOpC9Kt6Ua0wpTXOHlAdAQsYD0hdVgq4rGk");
 
-                Intent i = new Intent(getActivity(), MainActivity.class);
-                startActivity(i);
             }
         });
 

@@ -50,4 +50,11 @@ public class Item  extends SugarRecord{
     public void setType(ItemType type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Name:'" + Name + "\n"+
+                ", UWI_TAG:'" + UWI_TAG + '\'';
+
+    }
 }

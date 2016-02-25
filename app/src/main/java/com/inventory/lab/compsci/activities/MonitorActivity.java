@@ -12,13 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.inventory.lab.compsci.R;
-import com.inventory.lab.compsci.fragments.InventoryListFragment;
-import com.inventory.lab.compsci.fragments.LoginFragment;
+import com.inventory.lab.compsci.fragments.MainFragment;
 
 /**
- * Created by peoplesoft on 2/23/2016.
+ * Created by peoplesoft on 2/24/2016.
  */
-public class InventoryActivity extends AppCompatActivity {
+public class MonitorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +25,14 @@ public class InventoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.inventory_container);
-        if (fragment == null){
-            fragment = new InventoryListFragment();
+        if (fragment == null) {
+            fragment = new MainFragment();
             fm.beginTransaction()
                     .add(R.id.inventory_container, fragment)
                     .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .commit();
         }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,11 +44,6 @@ public class InventoryActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
     @Override
@@ -64,14 +59,12 @@ public class InventoryActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-//            Intent i = new Intent(this, SasSettingsActivity.class );
-//            startActivity(i);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 }
