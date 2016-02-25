@@ -15,6 +15,7 @@ import android.view.View;
 
 import com.inventory.lab.compsci.R;
 import com.inventory.lab.compsci.fragments.LoginFragment;
+import com.inventory.lab.compsci.tasks.LoadMasterTask;
 
 /**
  * Created by peoplesoft on 2/23/2016.
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        new LoadMasterTask().execute(true);
         setContentView(R.layout.activity_main);
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.inventory_container);
