@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.inventory.lab.compsci.R;
+import com.inventory.lab.compsci.activities.ItemActivity;
 
 /**
  * Created by peoplesoft on 2/24/2016.
@@ -16,6 +17,7 @@ public class ItemFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivity().setTitle(R.string.to_item);
     }
 
     @Nullable

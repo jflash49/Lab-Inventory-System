@@ -1,6 +1,7 @@
 package com.inventory.lab.compsci.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.inventory.lab.compsci.R;
+import com.inventory.lab.compsci.activities.ItemActivity;
 import com.inventory.lab.compsci.models.Item;
 import com.orm.SugarRecord;
 
@@ -61,6 +63,8 @@ public class InventoryListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(getActivity(), " "+i, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), ItemActivity.class);
+                startActivity(intent);
             }
         });
         return v;

@@ -19,8 +19,8 @@
 
 
                 <ImageView
-                    android:layout_width="128dp"
-                    android:layout_height="128dp"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
                     android:background="@drawable/image_holder1"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
@@ -41,7 +41,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
+                        android:paddingTop="5dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="2dp"
                         android:text="SN :"
@@ -49,11 +49,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
+                        android:paddingTop="5dp"
                         android:paddingLeft="2dp"
                         android:paddingRight="16dp"
                         android:text="Monitors"
-                        android:id="@+id/textView3"
+                        android:id="@+id/item_sn"
                         android:layout_toRightOf="@+id/imageView" />
                 </TableRow>
 
@@ -64,14 +64,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
+                        android:paddingTop="5dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="2dp"
                         android:text="Name :" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
+                        android:paddingTop="5dp"
                         android:paddingLeft="2dp"
                         android:paddingRight="16dp"
                         android:text="CSENG021"
@@ -86,14 +86,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
+                        android:paddingTop="5dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="2dp"
                         android:text="Type :" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
+                        android:paddingTop="5dp"
                         android:paddingLeft="2dp"
                         android:paddingRight="16dp"
                         android:text="Monitor"
@@ -108,14 +108,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
+                        android:paddingTop="5dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="2dp"
                         android:text="TAG : "/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
+                        android:paddingTop="5dp"
                         android:paddingLeft="2dp"
                         android:paddingRight="16dp"
                         android:text="73chNe110"

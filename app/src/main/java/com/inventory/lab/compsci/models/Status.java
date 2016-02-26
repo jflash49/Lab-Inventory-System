@@ -22,4 +22,11 @@ public class Status extends SugarRecord {
     public void setName(String name) {
         Name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "Name='" + Name + '\'' +
+                '}';
+    }
 }

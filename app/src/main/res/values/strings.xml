@@ -14,4 +14,9 @@
     <string name="to_keyboards">Keyboards</string>
     <string name="to_mice">Mice</string>
     <string name="item_scanned">Item Scanned</string>
+    <string name="to_test_page">Test</string>
+    <string name="to_test_result">Test Result</string>
+    <string name="to_main">Lab Inventory System</string>
+    <string name="to_item">Item</string>
+
 </resources>

@@ -5,7 +5,10 @@ import android.util.Log;
 
 import com.inventory.lab.compsci.R;
 import com.inventory.lab.compsci.models.Item;
+import com.inventory.lab.compsci.models.ItemRow;
 import com.inventory.lab.compsci.models.ItemType;
+import com.inventory.lab.compsci.models.Row;
+import com.inventory.lab.compsci.models.Total;
 import com.orm.SugarRecord;
 
 import org.json.JSONArray;
@@ -18,9 +21,12 @@ import java.util.List;
  * Created by peoplesoft on 2/23/2016.
  */
 public class UpdateDataTask {
-    Item item;
-    List<Item> items;
-    ItemType itemType;
+    protected Item item;
+    protected ItemType itemType;
+    protected ItemRow itemRow;
+    protected Row iRow;
+    protected Total mtotal;
+    protected int total = 0;
 
 
     public UpdateDataTask(JSONObject obj) {
@@ -36,16 +42,32 @@ public class UpdateDataTask {
                 int type = columns.getJSONObject(1).getInt("v");
                 String name  = columns.getJSONObject(2).getString("v");
                 String tag = columns.getJSONObject(3).getString("v");
+                int mrow = columns.getJSONObject(4).getInt("v");
 
                 item = new Item();
+                itemRow = new ItemRow();
                 item.setSerial(SN);
-                itemType = SugarRecord.findById(ItemType.class,(long)type);
+
+                itemType = SugarRecord.findById(ItemType.class, (long) type);
                 item.setType(itemType);
                 item.setName(name);
                 item.setUWI_TAG(tag);
                 item.save();
-                Log.d("ITEM",item.toString());
+
+                iRow = SugarRecord.findById(Row.class,(long)mrow);
+                itemRow.setItem(item);
+                itemRow.setRow(iRow);
+
+                itemRow.save();
+                Log.d("ITEM", item.toString());
+                Log.d("ITEMROW", itemRow.toString());
+                if (!(SN.equals("N/A")))
+                    total++;
             }
+            mtotal = new Total();
+            mtotal.setTotal_items(total);
+            mtotal.save();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -53,5 +75,6 @@ public class UpdateDataTask {
 
     public void cleardatabase(){
         SugarRecord.deleteAll(Item.class);
+        SugarRecord.deleteAll(ItemRow.class);
     }
 }

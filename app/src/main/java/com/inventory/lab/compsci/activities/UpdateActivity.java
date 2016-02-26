@@ -12,12 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.inventory.lab.compsci.R;
-import com.inventory.lab.compsci.fragments.MainFragment;
+import com.inventory.lab.compsci.fragments.UpdateFragment;
 
 /**
- * Created by peoplesoft on 2/24/2016.
+ * Created by peoplesoft on 2/26/2016.
  */
-public class MonitorActivity extends AppCompatActivity {
+public class UpdateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class MonitorActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.inventory_container);
         if (fragment == null) {
-            fragment = new MainFragment();
+            fragment = new UpdateFragment();
             fm.beginTransaction()
                     .add(R.id.inventory_container, fragment)
                     .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
@@ -35,6 +35,7 @@ public class MonitorActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

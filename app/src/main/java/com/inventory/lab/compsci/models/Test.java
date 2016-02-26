@@ -8,17 +8,19 @@ import com.orm.SugarRecord;
 public class Test extends SugarRecord {
     private ItemRow itemrow;
     private TestPeriods testPeriods;
+    private String comments;
     private Status status;
     private User user;
 
     public Test() {
     }
 
-    public Test(ItemRow itemrow, TestPeriods testPeriods, Status status, User user) {
+    public Test(ItemRow itemrow, TestPeriods testPeriods, Status status, User user, String comments) {
         this.itemrow = itemrow;
         this.testPeriods = testPeriods;
         this.status = status;
         this.user = user;
+        this.comments = comments;
     }
 
     public ItemRow getItemrow() {
@@ -51,5 +53,13 @@ public class Test extends SugarRecord {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

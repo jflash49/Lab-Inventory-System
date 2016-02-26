@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:padding="12dp"
+            android:padding="30dp"
             android:text="@string/to_scanner"
             android:id="@+id/to_scanner" />
 
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:padding="12dp"
+            android:padding="30dp"
             android:text="@string/to_update"
             android:id="@+id/to_update" />
     </LinearLayout>
