@@ -3,19 +3,16 @@ package com.inventory.lab.compsci.tasks;
 import android.util.Log;
 
 
-import com.inventory.lab.compsci.R;
 import com.inventory.lab.compsci.models.Item;
 import com.inventory.lab.compsci.models.ItemRow;
 import com.inventory.lab.compsci.models.ItemType;
 import com.inventory.lab.compsci.models.Row;
-import com.inventory.lab.compsci.models.Total;
+import com.inventory.lab.compsci.models.ItemTotal;
 import com.orm.SugarRecord;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 /**
  * Created by peoplesoft on 2/23/2016.
@@ -25,7 +22,7 @@ public class UpdateDataTask {
     protected ItemType itemType;
     protected ItemRow itemRow;
     protected Row iRow;
-    protected Total mtotal;
+    protected ItemTotal mtotal;
     protected int total = 0;
 
 
@@ -64,7 +61,7 @@ public class UpdateDataTask {
                 if (!(SN.equals("N/A")))
                     total++;
             }
-            mtotal = new Total();
+            mtotal = new ItemTotal();
             mtotal.setTotal_items(total);
             mtotal.save();
 

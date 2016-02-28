@@ -1,6 +1,11 @@
 package com.inventory.lab.compsci.activities;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -13,6 +18,7 @@ import android.view.MenuItem;
 
 import com.inventory.lab.compsci.R;
 import com.inventory.lab.compsci.fragments.MainFragment;
+import com.inventory.lab.compsci.receivers.TestPeriodReceiver;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        scheduleAlarm();
     }
 
     @Override
@@ -63,5 +70,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Setup a recurring alarm every day
+    public void scheduleAlarm() {
+        Intent alarm = new Intent(getApplicationContext(), TestPeriodReceiver.class);
+        boolean alarmRunning = (PendingIntent.getBroadcast(getApplicationContext(), 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
+        if(alarmRunning == false) {
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, alarm, 0);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 60000,pendingIntent);
+                    //AlarmManager.INTERVAL_DAY, pendingIntent);
+        }
+    }
+
+    public void cancelAlarm() {
+        Intent intent = new Intent(getApplicationContext(), TestPeriodReceiver.class);
+        final PendingIntent pIntent = PendingIntent.getBroadcast(this, TestPeriodReceiver.REQUEST_CODE,
+                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        alarm.cancel(pIntent);
     }
 }

@@ -1,16 +1,13 @@
 package com.inventory.lab.compsci.tasks;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.inventory.lab.compsci.models.ItemStatus;
 import com.inventory.lab.compsci.models.ItemType;
 import com.inventory.lab.compsci.models.Row;
-import com.inventory.lab.compsci.models.Status;
 import com.orm.SugarRecord;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -19,7 +16,7 @@ import java.util.List;
 public class LoadMasterTask  extends AsyncTask<Boolean, Integer ,Boolean> {
     List<Row> rows;
     List<ItemType> itemTypes;
-    List<com.inventory.lab.compsci.models.Status> statuses;
+    List<ItemStatus> statuses;
 
     public LoadMasterTask() {
        try {
@@ -39,7 +36,7 @@ public class LoadMasterTask  extends AsyncTask<Boolean, Integer ,Boolean> {
                 Log.d("POPULATING MASTERS","populating master tables");
                 rows = SugarRecord.listAll(Row.class);
                 itemTypes = SugarRecord.listAll(ItemType.class);
-                statuses = SugarRecord.listAll(com.inventory.lab.compsci.models.Status.class);
+                statuses = SugarRecord.listAll(ItemStatus.class);
                 if (rows.isEmpty()) {
                     populateRows();
                     if (itemTypes.isEmpty()) {
@@ -48,7 +45,6 @@ public class LoadMasterTask  extends AsyncTask<Boolean, Integer ,Boolean> {
                     if (statuses.isEmpty()){
                         populateStatus();
                     }
-
                 }
             }
         } catch (Exception e) {
@@ -59,7 +55,7 @@ public class LoadMasterTask  extends AsyncTask<Boolean, Integer ,Boolean> {
 
     protected void populateRows (){
         Row rowitem;
-        for (int i=0; i<10;i++){
+        for (int i=1; i<10;i++){
             rowitem = new Row(i," Row #"+i);
             rowitem.save();
             Log.d("ROW",rowitem.toString());
@@ -81,13 +77,13 @@ public class LoadMasterTask  extends AsyncTask<Boolean, Integer ,Boolean> {
         Log.d("TYPE", type3.toString());
     }
     protected void populateStatus(){
-        com.inventory.lab.compsci.models.Status status = new com.inventory.lab.compsci.models.Status("Not Tested");
-        com.inventory.lab.compsci.models.Status status1 = new com.inventory.lab.compsci.models.Status("Available");
-        com.inventory.lab.compsci.models.Status status2 = new com.inventory.lab.compsci.models.Status("Not Working");
-        com.inventory.lab.compsci.models.Status status3 = new com.inventory.lab.compsci.models.Status("Working");
-        status.save();
-        status1.save();
-        status2.save();
-        status3.save();
+        ItemStatus itemStatus = new ItemStatus("Not Tested");
+        ItemStatus itemStatus1 = new ItemStatus("Available");
+        ItemStatus itemStatus2 = new ItemStatus("Not Working");
+        ItemStatus itemStatus3 = new ItemStatus("Working");
+        itemStatus.save();
+        itemStatus1.save();
+        itemStatus2.save();
+        itemStatus3.save();
     }
 }

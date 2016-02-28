@@ -5,15 +5,15 @@ import com.orm.SugarRecord;
 /**
  * Created by peoplesoft on 2/26/2016.
  */
-public class Total extends SugarRecord {
+public class ItemTotal extends SugarRecord {
 
     private int total_items;
 
-    public Total(int total_items) {
+    public ItemTotal(int total_items) {
         this.total_items = total_items;
     }
 
-    public Total() {
+    public ItemTotal() {
     }
 
     public int getTotal_items() {

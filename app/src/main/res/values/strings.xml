@@ -18,5 +18,7 @@
     <string name="to_test_result">Test Result</string>
     <string name="to_main">Lab Inventory System</string>
     <string name="to_item">Item</string>
-
+    <string name="to_lab_check">Lab Inventory Check</string>
+    <string name="to_lab_update">Ensure all Items are in the lab</string>
+    <string name="action_total">Total Items</string>
 </resources>

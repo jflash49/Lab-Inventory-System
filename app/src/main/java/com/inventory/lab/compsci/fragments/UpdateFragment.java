@@ -1,10 +1,10 @@
 package com.inventory.lab.compsci.fragments;
 
-import android.content.Intent;
-import android.media.SoundPool;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,30 +18,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.inventory.lab.compsci.R;
-import com.inventory.lab.compsci.activities.SimpleScannerActivity;
 import com.inventory.lab.compsci.models.Item;
 import com.inventory.lab.compsci.models.ItemRow;
-import com.inventory.lab.compsci.models.Status;
-import com.inventory.lab.compsci.models.Test;
+import com.inventory.lab.compsci.models.ItemStatus;
+import com.inventory.lab.compsci.models.TestItem;
+import com.inventory.lab.compsci.models.TestPeriods;
 import com.orm.SugarRecord;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
  * Created by peoplesoft on 2/26/2016.
  */
 public class UpdateFragment extends Fragment {
-    TextView mSN, mName, mType,mTag;
+    TextView mSN, mName, mType,mTag, mItemRow,mTestP;
     EditText mComment;
     Button mOK, mCancel;
     public final static String ITEM_ID = "ITEM_ID";
     Item item;
-    List<Status> statuses;
+    List<ItemStatus> statuses;
     List<String> mstatus = new ArrayList<String>();
     ArrayAdapter<String> spinadapter;
     Spinner spinner;
-    Test test;
+    TestItem test;
     long mid;
     int status_choice = 0;
     public UpdateFragment() {
@@ -66,13 +68,26 @@ public class UpdateFragment extends Fragment {
         mOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                test = new Test();
-                test.setStatus(SugarRecord.findById(Status.class, (long)status_choice));
+                test = new TestItem();
+                if (!(findTestPeriod()==0)) {
+                    test.setTestPeriods(SugarRecord.findById(TestPeriods.class, (long)findTestPeriod()));
+                }
+                test.setItemStatus(SugarRecord.findById(ItemStatus.class, (long) status_choice));
                 test.setComments(mComment.getText().toString());
                 test.setItemrow(findItemRow(item));
                 test.save();
+                Toast.makeText(getActivity(), test.toString(),Toast.LENGTH_SHORT).show();
+
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                Fragment fragment = new TestItemListFragment();
+
+                fm.beginTransaction()
+                        .replace(R.id.inventory_container, fragment)
+                        .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                        .commit();
             }
         });
+
         mCancel = (Button)v.findViewById(R.id.cancel);
         mSN = (TextView)v.findViewById(R.id.item_sn);
         mSN.setText(item.getSerial());
@@ -82,6 +97,14 @@ public class UpdateFragment extends Fragment {
         mType.setText((item.getType()).getType());
         mTag = (TextView)v.findViewById(R.id.item_tag);
         mTag.setText(item.getUWI_TAG());
+        mItemRow = (TextView)v.findViewById(R.id.item_row);
+        mItemRow.setText((findItemRow(item).getRow()).getLoc());
+        mTestP = (TextView)v.findViewById(R.id.item_test_period);
+       if (!(findTestPeriod()==0)){
+                mTestP.setText((SugarRecord.findById(TestPeriods.class,(long)findTestPeriod()).toString()));
+        }else {
+            mTestP.setText("No Current Test Period");
+        }
 
         spinadapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,mstatus);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -102,6 +125,7 @@ public class UpdateFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().setTitle(R.string.to_update);
     }
 
     @Override
@@ -110,9 +134,9 @@ public class UpdateFragment extends Fragment {
     }
 
     public void populatespinner(){
-        statuses = SugarRecord.listAll(Status.class);
+        statuses = SugarRecord.listAll(ItemStatus.class);
         if (!(statuses.isEmpty())) {
-           for (Status stat : statuses) {
+           for (ItemStatus stat : statuses) {
                 mstatus.add(stat.getName());
             }
             //mstatus.add("Data Found");
@@ -126,5 +150,9 @@ public class UpdateFragment extends Fragment {
         List <ItemRow> itemRows = SugarRecord.find(ItemRow.class, "item = ?", String.valueOf(item.getId()));
         Toast.makeText(getActivity()," "+itemRows.get(0).getItem().toString(),Toast.LENGTH_SHORT).show();
         return itemRows.get(0);
+    }
+    protected int findTestPeriod(){
+        List<TestPeriods> listtestperiods = SugarRecord.listAll(TestPeriods.class);
+        return  listtestperiods.size();
     }
 }

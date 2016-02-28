@@ -62,8 +62,9 @@ public class InventoryListFragment extends Fragment {
         minventorylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity(), " "+i, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), ""+getItemId(i), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), ItemActivity.class);
+                intent.putExtra(ItemFragment.ITEM, getItemId(i));
                 startActivity(intent);
             }
         });
@@ -92,5 +93,10 @@ public class InventoryListFragment extends Fragment {
         {
             Toast.makeText(getActivity(),"Database Empty",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public long getItemId(int pos){
+        List<Item>items = SugarRecord.listAll(Item.class);
+        return (items.get(pos)).getId();
     }
 }

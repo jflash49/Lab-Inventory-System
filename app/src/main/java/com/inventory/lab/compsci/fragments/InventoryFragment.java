@@ -73,4 +73,10 @@ public class InventoryFragment extends Fragment {
         });
         return v;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(R.string.to_inventory);
+    }
 }

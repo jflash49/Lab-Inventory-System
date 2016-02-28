@@ -5,20 +5,20 @@ import com.orm.SugarRecord;
 /**
  * Created by peoplesoft on 2/23/2016.
  */
-public class Test extends SugarRecord {
+public class TestItem extends SugarRecord {
     private ItemRow itemrow;
     private TestPeriods testPeriods;
     private String comments;
-    private Status status;
+    private ItemStatus itemStatus;
     private User user;
 
-    public Test() {
+    public TestItem() {
     }
 
-    public Test(ItemRow itemrow, TestPeriods testPeriods, Status status, User user, String comments) {
+    public TestItem(ItemRow itemrow, TestPeriods testPeriods, ItemStatus itemStatus, User user, String comments) {
         this.itemrow = itemrow;
         this.testPeriods = testPeriods;
-        this.status = status;
+        this.itemStatus = itemStatus;
         this.user = user;
         this.comments = comments;
     }
@@ -39,12 +39,12 @@ public class Test extends SugarRecord {
         this.testPeriods = testPeriods;
     }
 
-    public Status getStatus() {
-        return status;
+    public ItemStatus getItemStatus() {
+        return itemStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setItemStatus(ItemStatus itemStatus) {
+        this.itemStatus = itemStatus;
     }
 
     public User getUser() {
@@ -61,5 +61,16 @@ public class Test extends SugarRecord {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Test{" +
+                "itemrow=" + itemrow +
+                ", testPeriods=" + testPeriods +
+                ", comments='" + comments + '\'' +
+                ", itemStatus=" + itemStatus +
+                ", user=" + user +
+                '}';
     }
 }
