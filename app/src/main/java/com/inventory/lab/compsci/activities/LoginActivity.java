@@ -1,41 +1,40 @@
 package com.inventory.lab.compsci.activities;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.inventory.lab.compsci.R;
-import com.inventory.lab.compsci.fragments.MainFragment;
-import com.inventory.lab.compsci.receivers.TestPeriodReceiver;
+import com.inventory.lab.compsci.fragments.LoginFragment;
+import com.inventory.lab.compsci.tasks.LoadMasterTask;
 
-public class MainActivity extends AppCompatActivity {
-
+/**
+ * Created by peoplesoft on 2/23/2016.
+ */
+public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        new LoadMasterTask().execute(true);
         setContentView(R.layout.activity_main);
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.inventory_container);
         if (fragment == null){
-            fragment = new MainFragment();
+            fragment = new LoginFragment();
             fm.beginTransaction()
                     .add(R.id.inventory_container, fragment)
                     .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .commit();
         }
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        scheduleAlarm();
     }
 
     @Override
@@ -63,32 +61,19 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+//            Intent i = new Intent(this, SasSettingsActivity.class );
+//            startActivity(i);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    // Setup a recurring alarm every day
-    public void scheduleAlarm() {
-        Intent alarm = new Intent(getApplicationContext(), TestPeriodReceiver.class);
-        boolean alarmRunning = (PendingIntent.getBroadcast(getApplicationContext(), 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
-        if(alarmRunning == false) {
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, alarm, 0);
-            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 60000,pendingIntent);
-                    //AlarmManager.INTERVAL_DAY, pendingIntent);
-        }
-    }
-
-    public void cancelAlarm() {
-        Intent intent = new Intent(getApplicationContext(), TestPeriodReceiver.class);
-        final PendingIntent pIntent = PendingIntent.getBroadcast(this, TestPeriodReceiver.REQUEST_CODE,
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        alarm.cancel(pIntent);
+    @Override
+    public void onBackPressed() {
+        // disable going back to the MainActivity
+        moveTaskToBack(true);
     }
 }

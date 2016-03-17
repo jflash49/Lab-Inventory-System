@@ -5,13 +5,13 @@ import com.orm.SugarRecord;
 /**
  * Created by peoplesoft on 2/23/2016.
  */
-public class Status extends SugarRecord {
+public class ItemStatus extends SugarRecord {
     private String Name;
 
-    public Status() {
+    public ItemStatus() {
     }
 
-    public Status(String name) {
+    public ItemStatus(String name) {
         Name = name;
     }
 
@@ -21,5 +21,12 @@ public class Status extends SugarRecord {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "Name='" + Name + '\'' +
+                '}';
     }
 }

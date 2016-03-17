@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:background="@drawable/image_holder1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/imageView"
+                    />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:paddingRight="16dp"
+                android:layout_toRightOf="@+id/imageView">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="2dp"
+                        android:text="SN :"
+                        android:layout_toRightOf="@+id/imageView" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="16dp"
+                        android:text="Monitors"
+                        android:id="@+id/item_sn" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="2dp"
+                        android:text="Name :" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="16dp"
+                        android:text="CSENG021"
+                        android:id="@+id/item_name"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="2dp"
+                        android:text="Type :" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="16dp"
+                        android:text="Monitor"
+                        android:id="@+id/item_type"
+                        android:layout_toRightOf="@+id/imageView" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="2dp"
+                        android:text="TAG : "/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="16dp"
+                        android:text="73chNe110"
+                        android:id="@+id/item_tag"
+                        android:layout_toRightOf="@+id/imageView" />
+                </TableRow>
+            </TableLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/imageView">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:text="Details"
+                        android:id="@+id/textView8" />
+                    <View
+                        android:layout_height="2dp"
+                        android:background="@color/grey"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:layout_width="match_parent"/>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="2dp"
+                            android:text="Last Tested : "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="16dp"
+                            android:text="No Recorded Test Period"
+                            android:id="@+id/item_test_period"
+                            />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="2dp"
+                            android:text="Row : "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="16dp"
+                            android:text="Unknown"
+                            android:id="@+id/item_row"
+                            />
+
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="2dp"
+                            android:text="Status : Unknown"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/item_status" />
+
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="2dp"
+                            android:text="Comment : "/>
+
+                    </TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:lines="20"
+                        android:minLines="6"
+                        android:scrollbars="vertical"
+                        android:ems="10"
+                        android:id="@+id/item_comment"
+                        android:background="@android:color/transparent" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="2dp"
+                            android:text="Lasted Tested By: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Not Recorded"
+                            android:id="@+id/user_name" />
+
+                    </TableRow>
+                </TableLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@android:string/ok"
+                        android:id="@+id/ok"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

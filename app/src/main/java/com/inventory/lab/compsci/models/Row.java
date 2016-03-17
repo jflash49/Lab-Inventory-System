@@ -32,4 +32,14 @@ public class Row extends SugarRecord {
     public void setLoc(String loc) {
         Loc = loc;
     }
+
+    @Override
+    public String toString() {
+        return "Row{" +
+                "Row=" + Row +
+                ", Loc='" + Loc + '\'' +
+                '}';
+    }
+
+
 }
