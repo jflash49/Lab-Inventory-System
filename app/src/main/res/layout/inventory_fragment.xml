@@ -9,8 +9,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="24dp"
         android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        >
+        android:paddingRight="24dp">
 
         <Button
             android:layout_width="fill_parent"
@@ -19,7 +18,8 @@
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:text="@string/to_monitors"
-            android:id="@+id/to_monitors" />
+            android:id="@+id/to_monitors"/>
+            <!--android:drawableLeft="@drawable/monitor1"/-->
 
         <Button
             android:layout_width="fill_parent"
@@ -28,7 +28,8 @@
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:text="@string/to_cpus"
-            android:id="@+id/to_cpus" />
+            android:id="@+id/to_cpus"/>
+            <!--android:drawableLeft="@drawable/memoryslot50"/-->
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -36,7 +37,8 @@
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:text="@string/to_keyboards"
-            android:id="@+id/to_keyboards" />
+            android:id="@+id/to_keyboards"/>
+            <!--android:drawableLeft="@drawable/keyboard50"/-->
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -44,6 +46,7 @@
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:text="@string/to_mice"
-            android:id="@+id/to_mice" />
+            android:id="@+id/to_mice"/>
+            <!--android:drawableLeft="@drawable/mouseleftclick52"/-->
     </LinearLayout>
 </ScrollView>

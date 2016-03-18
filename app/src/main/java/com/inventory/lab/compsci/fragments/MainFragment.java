@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,7 @@ public class MainFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().setTitle(R.string.lab_tech);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle(R.string.to_main);
         //getActivity().ActionBar().setSubtitle(R.string.to_main);
     }
 
@@ -117,6 +119,7 @@ public class MainFragment extends Fragment {
     public void onResume() {
         super.onResume();
         getActivity().setTitle(R.string.lab_tech);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle(R.string.to_main);
         //getActivity().getActionBar().setSubtitle(R.string.to_main);
     }
 
