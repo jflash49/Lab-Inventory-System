@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Inventory Update ">
+        <CheckBoxPreference
+            android:key="log_daily_update"
+            android:title="Daily"
+            android:summary="Updates occur 9 pm daily"
+            android:defaultValue="false" />
+        <CheckBoxPreference
+            android:key="log_test_days_update"
+            android:title="Test Days"
+            android:summary="Update occurs on Saturdays  at 5pm"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Notification ">
+        <CheckBoxPreference
+            android:key="pop_up_notification"
+            android:title="Weekly Notification"
+            android:summary="Occurs every friday and saturday"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Back up ">
+        <CheckBoxPreference
+            android:key="daily_backup"
+            android:title="Back up"
+            android:summary="Log is uploaded Saturday at 9pm"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

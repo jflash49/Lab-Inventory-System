@@ -203,10 +203,11 @@
                             android:paddingTop="5dp"
                             android:paddingLeft="16dp"
                             android:paddingRight="2dp"
-                            android:text="Status : Unknown"/>
+                            android:text="Status :"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="Unknown"
                             android:id="@+id/item_status" />
 
                     </TableRow>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +39,21 @@ public class TestFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent (getActivity(), SimpleScannerActivity.class);
                 startActivity(i);
+            }
+        });
+
+        mupdate = (Button)v.findViewById(R.id.to_update);
+        mupdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                Fragment fragment = new TestItemListFragment();
+
+                fm.beginTransaction()
+                        .replace(R.id.inventory_container, fragment)
+                        .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         return v;

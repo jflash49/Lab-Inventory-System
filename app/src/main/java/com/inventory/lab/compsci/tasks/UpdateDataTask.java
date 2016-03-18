@@ -8,6 +8,7 @@ import com.inventory.lab.compsci.models.ItemRow;
 import com.inventory.lab.compsci.models.ItemType;
 import com.inventory.lab.compsci.models.Row;
 import com.inventory.lab.compsci.models.ItemTotal;
+import com.inventory.lab.compsci.models.TestItem;
 import com.orm.SugarRecord;
 
 import org.json.JSONArray;
@@ -73,5 +74,6 @@ public class UpdateDataTask {
     public void cleardatabase(){
         SugarRecord.deleteAll(Item.class);
         SugarRecord.deleteAll(ItemRow.class);
+        SugarRecord.deleteAll(TestItem.class);
     }
 }

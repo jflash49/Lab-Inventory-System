@@ -1,5 +1,6 @@
 package com.inventory.lab.compsci.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,6 +24,7 @@ import com.orm.SugarRecord;
 
 import junit.framework.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,8 +33,8 @@ import java.util.List;
 public class ItemFragment extends Fragment {
     public final static String ITEM = "Item ID";
     Item item;
-    TextView mSN, mName, mType, mTag, mItemRow, mTestP, mComment,mStatus,mUser;
-    Button mOK, mCancel;
+    TextView mSN, mName, mType, mTag, mItemRow, mTestP, mComment, mStatus, mUser;
+    Button mOK;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,21 +66,20 @@ public class ItemFragment extends Fragment {
         mTag.setText(item.getUWI_TAG());
         mItemRow = (TextView) v.findViewById(R.id.item_row);
         mItemRow.setText((findItemRow(item).getRow()).getLoc());
-        mTestP = (TextView)v.findViewById(R.id.item_test_period);
-        mStatus = (TextView)v.findViewById(R.id.item_status);
+        mTestP = (TextView) v.findViewById(R.id.item_test_period);
+        mStatus = (TextView) v.findViewById(R.id.item_status);
         mUser = (TextView) v.findViewById(R.id.user_name);
 
-        if(!((findTestItem(findItemRow(item)))== 0)) {
+        if (!((findTestItem(findItemRow(item))) == 0)) {
             TestItem testItem = SugarRecord.findById(TestItem.class, findTestItem(findItemRow(item)));
             Toast.makeText(getActivity(), testItem.toString(), Toast.LENGTH_SHORT).show();
             mStatus.setText(testItem.getItemStatus().getName());
             mComment.setText(testItem.getComments());
-            if (!(testItem.getTestPeriods()==null))
+            if (!(testItem.getTestPeriods() == null))
                 mTestP.setText(testItem.getTestPeriods().toString());
             else
                 mTestP.setText("No Recorded Test Period");
-        }else
-        {
+        } else {
             Toast.makeText(getActivity(), "Test is empty", Toast.LENGTH_SHORT).show();
         }
         return v;
@@ -96,25 +98,21 @@ public class ItemFragment extends Fragment {
 
     public ItemRow findItemRow(Item item) {
         List<ItemRow> itemRows = SugarRecord.find(ItemRow.class, "item = ?", String.valueOf(item.getId()));
-        //Toast.makeText(getActivity(), " " + itemRows.get(0).getItem().toString(), Toast.LENGTH_SHORT).show();
         return itemRows.get(0);
     }
 
-    protected long findTestItem(ItemRow itemRow){
+    protected long findTestItem(ItemRow itemRow) {
         List<TestItem> testItems = SugarRecord.listAll(TestItem.class);
         if (!(testItems.isEmpty())) {
-            //Toast.makeText(getActivity(), testItems.get(0)+"\n"+itemRow.getItem(), Toast.LENGTH_SHORT).show();
             for (TestItem testItem : testItems) {
-                if ((testItem.getItemrow())!= null) {
-                    Toast.makeText(getActivity(), testItem.toString(), Toast.LENGTH_SHORT).show();
+                if ((testItem.getItemrow()) != null) {
                     if ((testItem.getItemrow()).getItem().getSerial().equals(itemRow.getItem().getSerial())) {
                         return testItem.getId();
                     }
                 }
             }
         }
-        return  0;
+        return 0;
     }
-
 
 }

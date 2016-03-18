@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import com.inventory.lab.compsci.R;
 import com.inventory.lab.compsci.fragments.MainFragment;
+import com.inventory.lab.compsci.preferences.SettingsActivity;
 import com.inventory.lab.compsci.receivers.TestPeriodReceiver;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,14 +40,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
         scheduleAlarm();
     }
 
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent i = new Intent(this, SettingsActivity.class );
+            startActivity(i);
             return true;
         }
 
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         if(alarmRunning == false) {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, alarm, 0);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 60000,pendingIntent);
+            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 3600000,pendingIntent);
                     //AlarmManager.INTERVAL_DAY, pendingIntent);
         }
     }

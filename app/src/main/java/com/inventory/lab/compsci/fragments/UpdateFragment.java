@@ -45,7 +45,7 @@ public class UpdateFragment extends Fragment {
     Spinner spinner;
     TestItem test;
     long mid;
-    int status_choice = 0;
+    int status_choice = 1;
     public UpdateFragment() {
         super();
     }
@@ -110,7 +110,7 @@ public class UpdateFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                status_choice = i;
+                status_choice = i+1;
             }
 
             @Override

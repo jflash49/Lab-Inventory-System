@@ -32,7 +32,6 @@ public class LoginFragment extends Fragment {
     ProgressBar progressBar;
     TextView minfo;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +53,7 @@ public class LoginFragment extends Fragment {
                 minfo.setText("Fetching Item List");
                 minfo.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.VISIBLE);
-                new DownloadWebPageTask(new AsyncResult() {
+               /* new DownloadWebPageTask(new AsyncResult() {
                     @Override
                     public void onResult(JSONObject object) {
                         Intent i = new Intent(getActivity(), MainActivity.class);
@@ -67,7 +66,8 @@ public class LoginFragment extends Fragment {
                         startActivity(i);
                     }
                 }).execute("https://spreadsheets.google.com/tq?key=18gKByXS6AOpC9Kt6Ua0wpTXOHlAdAQsYD0hdVgq4rGk");
-
+*/  Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
             }
         });
 
@@ -83,6 +83,5 @@ public class LoginFragment extends Fragment {
     public void onPause() {
         super.onPause();
     }
-
 
 }

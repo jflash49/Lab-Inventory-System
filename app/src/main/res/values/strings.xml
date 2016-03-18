@@ -21,4 +21,5 @@
     <string name="to_lab_check">Lab Inventory Check</string>
     <string name="to_lab_update">Ensure all Items are in the lab</string>
     <string name="action_total">Total Items</string>
+    <string name="lab_tech">Lab Inv. System</string>
 </resources>

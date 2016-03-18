@@ -69,9 +69,14 @@
                 android:layout_toRightOf="@+id/textView4" />
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="16dp"
                 android:id="@+id/item_tested"
+                android:src="@drawable/checkmark"
+                android:tint="@color/A"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />

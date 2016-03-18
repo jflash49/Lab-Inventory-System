@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.inventory.lab.compsci.R;
 import com.inventory.lab.compsci.activities.ItemActivity;
 import com.inventory.lab.compsci.models.Item;
+import com.inventory.lab.compsci.models.TestItem;
 import com.orm.SugarRecord;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import java.util.List;
 /**
  * Created by peoplesoft on 2/23/2016.
  */
-public class InventoryListFragment extends Fragment {
+public class InventoryListFragment extends ListFragment {
     public final static String TITLE ="Inventory Item";
     public final static String ITEMTYPE = "Item Type";
     public final static int TYPE = 0;
@@ -37,7 +38,12 @@ public class InventoryListFragment extends Fragment {
     List<String> itemValues = new ArrayList<>();
     ListView minventorylist;
     TextView mNotify;
-    ArrayAdapter adapter;
+    //ArrayAdapter adapter;
+    InventoryItemAdapter adapter;
+
+    public InventoryListFragment() {
+        super();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,30 +52,17 @@ public class InventoryListFragment extends Fragment {
         type = getActivity().getIntent().getIntExtra(ITEMTYPE, TYPE);
         getActivity().setTitle(mtitle);
         populate();
+        adapter = new InventoryItemAdapter(new ArrayList(items));
+        setListAdapter(adapter);
+        setRetainInstance(true);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v  = inflater.inflate(R.layout.inventory_list_fragment, container, false);
-        mNotify = (TextView) v.findViewById(R.id.emptyset);
-        adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1,
-                itemValues);
-        minventorylist = (ListView)v.findViewById(R.id.itemlist);
-        minventorylist.setEmptyView(mNotify);
-        minventorylist.setAdapter(adapter);
-        minventorylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               // Toast.makeText(getActivity(), ""+getItemId(i), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), ItemActivity.class);
-                intent.putExtra(ItemFragment.ITEM, getItemId(i));
-                startActivity(intent);
-            }
-        });
-        return v;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
+
 
     @Override
     public void onResume() {
@@ -80,6 +73,7 @@ public class InventoryListFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
 
 
     public void populate(){
@@ -98,5 +92,55 @@ public class InventoryListFragment extends Fragment {
     public long getItemId(int pos){
         List<Item>items = SugarRecord.listAll(Item.class);
         return (items.get(pos)).getId();
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getListView().setDivider(null);
+        setEmptyText(" No Items");
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity().getApplicationContext(), "Position : " + i, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Item c = (Item)(getListAdapter()).getItem(position);
+        Intent i = new Intent(getActivity(), ItemActivity.class);
+        i.putExtra(ItemFragment.ITEM, c.getId());
+        startActivity(i);
+    }
+
+
+    private class InventoryItemAdapter extends ArrayAdapter<Item> {
+
+        public InventoryItemAdapter(ArrayList<Item> testitems) {
+            super(getActivity(), 0, testitems);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // If we weren't given a view, inflate one
+            if (convertView == null) {
+                convertView = getActivity().getLayoutInflater()
+                        .inflate(R.layout.inventory_list_item, null);
+            }
+
+            // Configure the view for this Test Item
+            Item c = getItem(position);
+            TextView SN = (TextView) convertView.findViewById(R.id.SN);
+            SN.setText(c.getSerial());
+
+            TextView Name = (TextView) convertView.findViewById(R.id.Name);
+            Name.setText(c.getName());
+
+            return convertView;
+        }
     }
 }
